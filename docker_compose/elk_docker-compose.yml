@@ -1,0 +1,70 @@
+version: '2'
+volumes:
+  elasticsearch_plugin-volume:
+    driver: local
+  elasticsearch_data-volume:
+    driver: local
+  elasticsearch_config-volume:
+    driver: local
+services:
+  logstash:
+    image: logstash
+    volumes:
+    - /etc/logstash/conf.d
+    links:
+    - elasticsearch1:elasticsearch
+    ports:
+    - 5000:5000/tcp
+    - 6000:6000/tcp
+    command:
+    - -f
+    - /etc/logstash/conf.d/
+    - --config.string
+    - input { udp { port => 5000 codec => "json" } tcp { port => 6000 codec => "json" } } output { elasticsearch { hosts => "elasticsearch:9200"} }
+  logspout:
+    image: bekt/logspout-logstash:latest
+    environment:
+      LOGSPOUT: ignore
+      ROUTE_URIS: logstash+tcp://logstash:6000
+    stdin_open: true
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    tty: true
+    links:
+    - logstash:logstash
+  elasticsearch1:
+    cap_add:
+    - IPC_LOCK
+    image: elasticsearch
+    environment:
+      ES_JAVA_OPTS: -Xms350m -Xmx350m -Des.path.conf=/usr/share/elasticsearch/config
+      cluster.name: elasticsearch
+      discovery.zen.minimum_master_nodes: '1'
+      discovery.zen.ping.unicast.hosts: elasticsearch1
+      network.host: 0.0.0.0
+    ulimits:
+      memlock:
+        hard: -1
+        soft: -1
+      nofile:
+        hard: 65536
+        soft: 65536
+    volumes:
+    - elasticsearch_config-volume:/usr/share/elasticsearch/config
+    - elasticsearch_data-volume:/usr/share/elasticsearch/data
+    - elasticsearch_plugin-volume:/usr/share/elasticsearch/plugins
+    ports:
+    - 9200:9200/tcp
+    - 9300:9300/tcp
+  kibana:
+    image: kibana
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: '5601'
+    volumes:
+    - /etc/kibana/
+    links:
+    - elasticsearch1:elasticsearch
+    ports:
+    - 5601:5601/tcp
