@@ -1,0 +1,29 @@
+version: '2'
+volumes:
+  graylog_db-volume:
+    driver: local
+  graylog-volume:
+    driver: local
+  graylog_db_config-volume:
+    driver: local
+services:
+  gray-mongo:
+    image: mongo:3
+    volumes:
+    - graylog_db_config-volume:/data/configdb
+    - graylog_db-volume:/data/db
+  graylog:
+    image: graylog/graylog
+    environment:
+      GRAYLOG_ELASTICSEARCH_HOSTS: http://169.57.178.92:9200
+      GRAYLOG_PASSWORD_SECRET: somepasswordpepper
+      GRAYLOG_ROOT_PASSWORD_SHA2: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+      GRAYLOG_WEB_ENDPOINT_URI: http://169.57.178.92:9001/api
+      TZ: America/Sao_Paulo
+    volumes:
+    - graylog-volume:/usr/share/graylog/data
+    links:
+    - gray-mongo:mongo
+    ports:
+    - 1514:514/tcp
+    - 9001:9000/tcp
