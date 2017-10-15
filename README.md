@@ -67,3 +67,12 @@ The following is a visual representation of how the different tools will be inte
 To assist with a quick deploy, we'll provide docker-compose templates of how the tools should integrated at the following:
 
 - [Docker-Compose Files](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/docker_compose)
+
+## The Team
+
+The following folks are organizing the initiative to use this
+
+Team            |        Name   |    Email    | Role  
+---------------------|------------------------------------|---------|------|
+<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
+<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
