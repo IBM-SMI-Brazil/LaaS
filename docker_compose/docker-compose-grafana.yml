@@ -17,7 +17,12 @@ services:
     volumes:
     - grafana-volume:/var/lib/grafana/
     ports:
-    - "3000:3000/tcp"
+    - 3000:3000/tcp
+    deploy:
+      replicas:1
+      placement:
+         constraints:
+            - node.hostname = laas-lab-local-1
   grafana-webdav:
     image: morrisjobke/webdav
     environment:
@@ -29,9 +34,13 @@ services:
     - grafana_webdav-volume:/var/webdav
     tty: true
     ports:
-    - "3001:80/tcp"
+    - 3001:80/tcp
+    deploy:
+      replicas:1
+      placement:
+         constraints:
+            - node.hostname = laas-lab-local-1
 networks:
   default:
     external:
       name: swarm-overlay-1
-      
