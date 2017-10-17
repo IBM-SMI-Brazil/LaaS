@@ -1,0 +1,21 @@
+version: '3'
+volumes:
+  haproxy-volume:
+    driver: local
+services:
+   haproxy:
+    image: haproxy
+    volumes:
+    - haproxy-volume:/usr/local/etc/haproxy
+    ports:
+    - "9001:9001"
+    - "9002:9002"
+    deploy:
+      placement:
+         constraints:
+            - node.hostname == laas-lab-local-1
+networks:
+  default:
+    external:
+      name: swarm-overlay-1
+      
