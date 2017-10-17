@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 volumes:
   elasticsearch_plugin-volume:
     driver: local
@@ -11,8 +11,6 @@ services:
     image: logstash
     volumes:
     - /etc/logstash/conf.d
-    links:
-    - elasticsearch1:elasticsearch
     ports:
     - 5000:5000/tcp
     - 6000:6000/tcp
@@ -21,6 +19,11 @@ services:
     - /etc/logstash/conf.d/
     - --config.string
     - input { udp { port => 5000 codec => "json" } tcp { port => 6000 codec => "json" } } output { elasticsearch { hosts => "elasticsearch:9200"} }
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == laas-lab-local-1
   logspout:
     image: bekt/logspout-logstash:latest
     environment:
@@ -30,25 +33,16 @@ services:
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock
     tty: true
-    links:
-    - logstash:logstash
-  elasticsearch1:
-    cap_add:
-    - IPC_LOCK
+    deploy:
+      mode: global
+  elasticsearch:
     image: elasticsearch
     environment:
-      ES_JAVA_OPTS: -Xms350m -Xmx350m -Des.path.conf=/usr/share/elasticsearch/config
+      ES_JAVA_OPTS: -Xms1g -Xmx1g -Des.path.conf=/usr/share/elasticsearch/config
       cluster.name: elasticsearch
       discovery.zen.minimum_master_nodes: '1'
-      discovery.zen.ping.unicast.hosts: elasticsearch1
+      discovery.zen.ping.unicast.hosts: elasticsearch
       network.host: 0.0.0.0
-    ulimits:
-      memlock:
-        hard: -1
-        soft: -1
-      nofile:
-        hard: 65536
-        soft: 65536
     volumes:
     - elasticsearch_config-volume:/usr/share/elasticsearch/config
     - elasticsearch_data-volume:/usr/share/elasticsearch/data
@@ -56,6 +50,11 @@ services:
     ports:
     - 9200:9200/tcp
     - 9300:9300/tcp
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == laas-lab-local-1
   kibana:
     image: kibana
     environment:
@@ -64,7 +63,15 @@ services:
       SERVER_PORT: '5601'
     volumes:
     - /etc/kibana/
-    links:
-    - elasticsearch1:elasticsearch
     ports:
     - 5601:5601/tcp
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == laas-lab-local-1
+networks:
+  default:
+    external:
+        name: swarm-overlay-1
+        
