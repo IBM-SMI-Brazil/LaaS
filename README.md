@@ -76,3 +76,10 @@ Team            |        Name   |    Email    | Role
 ---------------------|------------------------------------|---------|------|
 <img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
 <img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
+
+## Presentation
+
+We're currently presentation deck can be used as reference to present the solution:
+
+![2017-10-16_LaaS_(LogAnalytics_As_A_Service)_v4.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-10-16_LaaS_(LogAnalytics_As_A_Service)_v4.0.pdf)
+
