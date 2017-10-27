@@ -9,6 +9,8 @@ volumes:
 services:
   mongo:
     image: mongo:3
+    environment:
+      - MONGODB_REPLICA_SET_MODE=primary
     volumes:
     - graylog_db_config-volume:/data/configdb
     - graylog_db-volume:/data/db
