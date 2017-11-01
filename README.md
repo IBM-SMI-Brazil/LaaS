@@ -72,7 +72,9 @@ To assist with a quick deploy, we'll provide docker-compose templates of how the
 
 We're currently using the following presentation as a quick reference to present the solution:
 
-![2017-10-16_LaaS_(LogAnalytics_As_A_Service)_v4.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-10-16_LaaS_(LogAnalytics_As_A_Service)_v4.0.pdf)
+![2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf)
+
+![2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf)
 
 ## Contact
 
