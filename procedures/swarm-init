@@ -1,0 +1,75 @@
+[root@laas-lab-local-1 ~]# docker swarm init
+Swarm initialized: current node (a8pml3unconooa7t7qnsw7knp) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-5jk292hj9b12by0byz4xfnntq07nd58ozrqxxyjx91kx03oqhw-8pl8cm17pj1lam8lq10gmuih0 192.168.122.60:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+=========================
+
+docker network create --driver overlay swarm-overlay-1
+
+[root@laas-lab-local-1 ~]# docker network list
+NETWORK ID          NAME                DRIVER              SCOPE
+73b277c1972a        bridge              bridge              local
+f417626507a7        docker_gwbridge     bridge              local
+c713290dd2c9        host                host                local
+sfedh8kug91b        ingress             overlay             swarm
+a3a6a6de924b        none                null                local
+j28vui73v0hl        swarm-overlay-1     overlay             swarm
+
+=========================
+
+docker stack deploy --compose-file docker-stack-grafana.yml grafana
+
+[hprado@laas-lab-local-1 ~]$ docker stack list
+NAME                SERVICES
+grafana             2
+[hprado@laas-lab-local-1 ~]$ docker service list
+ID                  NAME                     MODE                REPLICAS            IMAGE                       PORTS
+xy25i9gy3pzt        grafana_grafana          replicated          1/1                 grafana/grafana:4.5.2       *:3000->3000/tcp
+ljuldhci299t        grafana_grafana-webdav   replicated          1/1                 morrisjobke/webdav:latest   *:3001->80/tcp
+
+[hprado@laas-lab-local-1 ~]$ docker stack ps grafana
+ID                  NAME                       IMAGE                       NODE                DESIRED STATE       CURRENT STATE           ERROR                              PORTS
+5qjv97ycm3h7        grafana_grafana.1          grafana/grafana:4.5.2       laas-lab-local-1    Running             Running 4 minutes ago                                      
+i8zd1rs8sd3k        grafana_grafana-webdav.1   morrisjobke/webdav:latest   laas-lab-local-1    Running             Running 4 minutes ago                                      
+ujay8f5897ge        grafana_grafana.1          grafana/grafana:4.5.2       laas-lab-local-1    Shutdown            Failed 4 minutes ago    "No such container: grafana_gr…"   
+vmaln6e23atq        grafana_grafana-webdav.1   morrisjobke/webdav:latest   laas-lab-local-1    Shutdown            Failed 4 minutes ago    "No such container: grafana_gr…"   
+mfml5086pixu        grafana_grafana.1          grafana/grafana:4.5.2       laas-lab-local-1    Shutdown            Failed 36 hours ago     "No such container: grafana_gr…"   
+d6rcf1k3shx1        grafana_grafana-webdav.1   morrisjobke/webdav:latest   laas-lab-local-1    Shutdown            Failed 36 hours ago     "No such container: grafana_gr…"   
+
+#install plugins from grafana
+#create datasources
+#copy dashboards
+#modify dashboards links
+=========================
+#Elasticsearch
+
+/etc/sysctl.conf
+vm.max_map_count=262144
+
+sudo sysctl -w vm.max_map_count=262144
+
+rsync -avzhe ssh 192.168.0.111:/nfsshare/elasticsearch_data-volume/nodes/0/indices/ /var/lib/docker/volumes/elasticsearch_elasticsearch_data-volume/_data/nodes/0/indices/
+=========================
+
+[hprado@laas-lab-local-1 graylog]$ docker stack ls
+NAME                SERVICES
+elasticsearch       4
+grafana             2
+graylog             2
+[hprado@laas-lab-local-1 graylog]$ docker service ls
+ID                  NAME                          MODE                REPLICAS            IMAGE                           PORTS
+0tkbagbit5ea        elasticsearch_elasticsearch   replicated          1/1                 elasticsearch:latest            *:9200->9200/tcp,*:9300->9300/tcp
+x0sifn6zsfvl        elasticsearch_kibana          replicated          1/1                 kibana:latest                   *:5601->5601/tcp
+a3lqo8hbxxcs        elasticsearch_logspout        global              1/1                 bekt/logspout-logstash:latest   
+sgejjpopntu4        elasticsearch_logstash        replicated          1/1                 logstash:latest                 *:5000->5000/tcp,*:6000->6000/tcp
+xy25i9gy3pzt        grafana_grafana               replicated          1/1                 grafana/grafana:4.5.2           *:3000->3000/tcp
+ljuldhci299t        grafana_grafana-webdav        replicated          1/1                 morrisjobke/webdav:latest       *:3001->80/tcp
+edxg7i819pjy        graylog_graylog               replicated          1/1                 graylog/graylog:2.3             *:514->514/tcp,*:515->515/tcp,*:9000->9000/tcp
+kl0nvs0r1xeb        graylog_mongo                 replicated          1/1                 mongo:3                         
+[hprado@laas-lab-local-1 graylog]$ 
+
