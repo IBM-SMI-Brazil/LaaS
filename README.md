@@ -62,11 +62,26 @@ We're proposing the following advantages with the bundle of solutions that we've
 The following is a visual representation of how the different tools will be integrated:
 ![LaaS Proposed Architecture](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/laas_architecture.png)
 
-## Docker Compose Files
+## Deployment Steps
 
 To assist with a quick deploy, we'll provide docker-compose templates of how the tools should integrated at the following:
 
 - [Docker-Compose Files](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/docker_compose)
+
+### Dependencies
+
+* [Docker](https://docs.docker.com/engine/installation/)
+* [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Installation Steps
+
+Run the following commands:
+
+```bash
+git clone git@github.com:IBM-SMI-Brazil/LaaS.git
+cd ./LaaS/docker_compose
+docker-compose up -d
+```
 
 ## Presentation Deck
 
