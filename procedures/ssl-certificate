@@ -65,3 +65,7 @@ Getting Private key
 ###################################
 RESULT:
 server.crt will be the certificate
+
+###################################
+For Graylog syslog input JKS:
+openssl pkcs12 -export -out server.jks -in server.crt -inkey server.key
