@@ -1,0 +1,145 @@
+{
+  "extractors": [
+    {
+      "title": "syslog_pid",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 2,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "pid",
+      "extractor_config": {
+        "regex_value": "^.+\\[([0-9]+)\\]:.*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_appname",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "appname",
+      "extractor_config": {
+        "regex_value": "^[A-Za-z0-9\\-_]+ ([A-Za-z0-9\\-_]+).*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_root_login_ip",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 3,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_ip",
+      "extractor_config": {
+        "regex_value": "^.*Failed password for root from ([0-9:\\.]+) .*$"
+      },
+      "condition_type": "string",
+      "condition_value": "Failed password for root from"
+    },
+    {
+      "title": "syslog_ssh_invalidid_ip",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 7,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_ip",
+      "extractor_config": {
+        "regex_value": "^.*Failed password for.*from ([0-9:\\.]+).*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_ssh_accepted_ip",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 1,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_ip",
+      "extractor_config": {
+        "regex_value": "^.*Accepted password for.*from ([0-9:\\.]+).*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_ssh_accepted_userid",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 8,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_userid",
+      "extractor_config": {
+        "regex_value": "^.*Accepted password for.*[ \\t]+([A-Za-z0-9:\\.\\-_]+) from.*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_sudo_userid_success",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 5,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_userid",
+      "extractor_config": {
+        "regex_value": "^.*su[do]*.*session opened for user .+ by ([0-9A-Za-z\\-_]+)"
+      },
+      "condition_type": "string",
+      "condition_value": "session opened for user"
+    },
+    {
+      "title": "syslog_ssh_invalidid_userid",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 6,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_userid",
+      "extractor_config": {
+        "regex_value": "^.*Failed password for.*[ \\t]+([A-Za-z0-9:\\.\\-_]+) from.*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "syslog_sudo_userid_failed",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 4,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_userid",
+      "extractor_config": {
+        "regex_value": "^.*su[do]*.*authentication failure;.*user=([0-9A-Za-z\\-_]+)"
+      },
+      "condition_type": "string",
+      "condition_value": "sudo"
+    },
+    {
+      "title": "syslog_root_notinsudoers_id",
+      "extractor_type": "regex",
+      "converters": [],
+      "order": 9,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "message_userid",
+      "extractor_config": {
+        "regex_value": "^.*sudo.*:[ \\t]+([a-zA-Z0-9_\\-\\.]+).*user NOT in sudoers.*USER=.*$"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    }
+  ],
+  "version": "2.4.5"
+}
