@@ -1,0 +1,23 @@
+version: '3'
+volumes:
+  grafana-volume:
+    driver: local
+services:
+  grafana:
+    image: grafana/grafana:6.5.1
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel
+    tty: true
+    volumes:
+    - grafana-volume:/var/lib/grafana/
+    ports:
+    - 3000:3000/tcp
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == ${SWARMNODE}
+networks:
+  default:
+    external:
+      name: ${SWARMOVERLAYNETWORK}

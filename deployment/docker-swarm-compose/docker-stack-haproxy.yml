@@ -1,0 +1,22 @@
+version: '3'
+volumes:
+  haproxy-volume:
+    driver: local
+services:
+   haproxy:
+    image: haproxy
+    volumes:
+    - haproxy-volume:/usr/local/etc/haproxy
+    - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+    - "9001:9001"
+    - "9002:9002"
+    - "9003:9003"
+    deploy:
+      placement:
+         constraints:
+            - node.hostname == graylogvm
+networks:
+  default:
+    external:
+      name: swarm-overlay-1

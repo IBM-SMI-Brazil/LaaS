@@ -1,0 +1,55 @@
+version: '3'
+volumes:
+  elasticsearch_plugin-volume:
+    driver: local
+  elasticsearch_data-volume:
+    driver: local
+  elasticsearch_config-volume:
+    driver: local
+services:
+  cerebro:
+    image: lmenezes/cerebro:0.8.3
+    deploy:
+      replicas: 1
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.6.2
+    environment:
+      ES_JAVA_OPTS: -Xms2g -Xmx2g -Des.path.conf=/usr/share/elasticsearch/config
+      cluster.name: elasticsearch
+      discovery.zen.minimum_master_nodes: '1'
+      discovery.zen.ping.unicast.hosts: elasticsearch
+      network.host: 0.0.0.0
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+    - elasticsearch_config-volume:/usr/share/elasticsearch/config
+    - elasticsearch_data-volume:/usr/share/elasticsearch/data
+    - elasticsearch_plugin-volume:/usr/share/elasticsearch/plugins
+    ports:
+    - 9200:9200/tcp
+    - 9300:9300/tcp
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == ${SWARMNODE}
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.6.2
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: '5601'
+    volumes:
+    - /etc/kibana/
+    ports:
+    - 5601:5601/tcp
+    deploy:
+      replicas: 1
+      
+networks:
+  default:
+    external:
+      name: ${SWARMOVERLAYNETWORK}
+

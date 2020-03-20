@@ -1,0 +1,8 @@
+SWARMNODE=graylogvm
+SWARMOVERLAYNETWORK=swarm-overlay-1
+GRAYLOGPWSECRET=somepasswordpepper
+GRAYLOGPWSHA2ITSELF=4bba0654175e3bf16cb6ea4398b082a483477b0bec4e3f977963193c496e8417
+GRAYLOGURI=http://skullkid.dlinkddns.com:3300/
+GRAYLOGTRUSTSTORE="-Djavax.net.ssl.trustStore=/usr/share/graylog/data/config/server.jks -Djavax.net.ssl.trustStorePassword=slinter"
+GRAYLOGTZ=America/Sao_Paulo
+

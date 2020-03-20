@@ -1,0 +1,49 @@
+version: '3'
+volumes:
+  graylog_db-volume:
+    driver: local
+  graylog-volume:
+    driver: local
+  graylog_db_config-volume:
+    driver: local
+services:
+  mongo:
+    image: mongo:3
+    volumes:
+    - graylog_db_config-volume:/data/configdb
+    - graylog_db-volume:/data/db
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == ${SWARMNODE}
+  graylog:
+    image: graylog/graylog:3.1
+    environment:
+      GRAYLOG_ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      GRAYLOG_PASSWORD_SECRET: ${GRAYLOGPWSECRET}
+      GRAYLOG_ROOT_PASSWORD_SHA2: ${GRAYLOGPWSHA2ITSELF}
+      GRAYLOG_HTTP_EXTERNAL_URI: ${GRAYLOGURI}
+      GRAYLOG_SERVER_JAVA_OPTS: "-Djavax.net.ssl.trustStore=/usr/share/graylog/data/config/server.jks -Djavax.net.ssl.trustStorePassword=${GRAYLOGTRUSTSTOREPW}"
+      #GRAYLOG_ROOT_TIMEZONE: ${GRAYLOGTZ}
+    volumes:
+    - graylog-volume:/usr/share/graylog/data
+    ports:
+    - 9000:9000/tcp
+    - 1514:1514/tcp
+    - 1515:1515/tcp
+    - 1516:1516/tcp
+    - 1517:1517/tcp
+    - 1518:1518/tcp
+    - 514:514/udp
+    - 12201:12201/tcp
+    - 12201:12201/udp
+    deploy:
+      replicas: 1
+      placement:
+         constraints:
+            - node.hostname == ${SWARMNODE}
+networks:
+  default:
+    external:
+      name: ${SWARMOVERLAYNETWORK}
