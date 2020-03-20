@@ -1,0 +1,10 @@
+ 
+#Append this to your /etc/profile to log shell commands to local6 syslog facility
+
+# TTY to syslog
+readonly CURRENT_TTY=`tty | sed 's/\/dev\///g'`
+readonly CURRENT_SESSION_IP=`pinky | grep ${CURRENT_TTY} | awk '{ print $NF }'`
+export CURRENT_TTY
+export CURRENT_SESSION_IP
+readonly PROMPT_COMMAND='RETRN_VAL=$?;logger -p local6.debug "$(whoami) [$$]: $(history 1 | sed "s/^[ ]*[0-9]\+[ ]*//" ) [$RETRN_VAL] [$CURRENT_TTY] [$CURRENT_SESSION_IP]"'
+export PROMPT_COMMAND

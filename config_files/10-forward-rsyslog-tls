@@ -1,0 +1,7 @@
+global(
+DefaultNetstreamDriver="gtls"
+DefaultNetstreamDriverCertFile="/etc/rsyslog.d/keys/ca.d/server.crt"
+DefaultNetstreamDriverKeyFile="/etc/rsyslog.d/keys/ca.d/server.key"
+)
+# set up the action for all messages
+*.* action(type="omfwd" Target="192.168.0.20" Port="1515" Protocol="tcp" StreamDriver="gtls" StreamDriverMode="1" StreamDriverAuthMode="anon" Template="RSYSLOG_SyslogProtocol23Format")

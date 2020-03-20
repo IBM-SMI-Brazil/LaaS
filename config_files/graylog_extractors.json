@@ -15,20 +15,6 @@
       "condition_value": ""
     },
     {
-      "title": "syslog_appname",
-      "extractor_type": "regex",
-      "converters": [],
-      "order": 0,
-      "cursor_strategy": "copy",
-      "source_field": "message",
-      "target_field": "appname",
-      "extractor_config": {
-        "regex_value": "^[A-Za-z0-9\\-_]+ ([A-Za-z0-9\\-_]+).*$"
-      },
-      "condition_type": "none",
-      "condition_value": ""
-    },
-    {
       "title": "syslog_root_login_ip",
       "extractor_type": "regex",
       "converters": [],
