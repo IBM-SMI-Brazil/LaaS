@@ -60,7 +60,7 @@ We're proposing the following advantages with the bundle of solutions that we've
 ## Architecture
 
 The following is a visual representation of how the different tools will be integrated:
-![LaaS Proposed Architecture](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/images/laas_architecture.png)
+![LaaS Proposed Architecture](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/laas_architecture.png)
 
 ## Deployment Steps
 
@@ -72,9 +72,9 @@ For the full deployment steps please follow instructions provided at the followi
 
 We're currently using the following presentation as a quick reference to present the solution:
 
-![2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/ppt-deck/2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf)
+![2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf)
 
-![2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/ppt-deck/2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf)
+![2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf)
 
 ## Contact
 
@@ -82,5 +82,5 @@ In case you need any further information or assistance, the following folks can 
 
 Team            |        Name   |    Email    | Role  
 ---------------------|------------------------------------|---------|------|
-<img src="https://github.com/IBM-SMI-Brazil/LaaS/tree/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
-<img src="https://https://github.com/IBM-SMI-Brazil/LaaS/tree/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
+<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
+<img src="https://https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
