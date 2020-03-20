@@ -2,7 +2,7 @@
 
  When consolidation through Syslog Server is not enough!
 
-![SysLog_Diagram](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/syslog.png)
+![SysLog_Diagram](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/syslog.png)
 
 Syslog, is a standardized way (or Protocol) of producing and sending Log and Event information from Unix/Linux and Windows systems (which produces Event Logs) and Devices (Routers, Firewalls, Switches, Servers, etc) over UDP Port 514 to a centralized Log/Event Message collector which is known as a Syslog Server.
 
@@ -14,7 +14,7 @@ However the diversity of information that can be consolidate through a SysLog se
 
 Our goal is to help supporting teams on finding patterns and trends from their logs, connecting the dots from multiple sources through a consolidated view. **If your application/system writes a log, the solution will read it!**.
 
-![LaaS Representation](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/laas.png)
+![LaaS Representation](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/laas.png)
 
 This repository is inteended to assist with the implementation of a set of tools to assist with Log Consolidation to assist troubleshooting, auditing and investigation by using open-source tools according to the requirements of each different environment.
 
