@@ -83,4 +83,4 @@ In case you need any further information or assistance, the following folks can 
 Team            |        Name   |    Email    | Role  
 ---------------------|------------------------------------|---------|------|
 <img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
-<img src="https://https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
+<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
