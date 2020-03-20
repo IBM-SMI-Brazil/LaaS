@@ -1,8 +1,8 @@
-## LaaS - Log Analytics as a Service
+# LaaS - Log Analytics as a Service
 
  When consolidation through Syslog Server is not enough!
 
-![SysLog_Diagram](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/syslog.png)
+![SysLog_Diagram](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/syslog.png)
 
 Syslog, is a standardized way (or Protocol) of producing and sending Log and Event information from Unix/Linux and Windows systems (which produces Event Logs) and Devices (Routers, Firewalls, Switches, Servers, etc) over UDP Port 514 to a centralized Log/Event Message collector which is known as a Syslog Server.
 
@@ -10,11 +10,11 @@ One of the main reasons Syslog was so widely accepted throughout the industry wa
 
 However the diversity of information that can be consolidate through a SysLog server is also one of its biggest problems, since as the amount ingested data increases, the complexity also increases, and support teams start to have considerable problems to extract relevant information from the central stash, also, there's no way of finding information except "grepping" through the data manually or using scripts.
 
-# Why provide Log Analytics as a Service?
+## Why provide Log Analytics as a Service?
 
 Our goal is to help supporting teams on finding patterns and trends from their logs, connecting the dots from multiple sources through a consolidated view. **If your application/system writes a log, the solution will read it!**.
 
-![LaaS Representation](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/laas.png)
+![LaaS Representation](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/laas.png)
 
 This repository is inteended to assist with the implementation of a set of tools to assist with Log Consolidation to assist troubleshooting, auditing and investigation by using open-source tools according to the requirements of each different environment.
 
@@ -36,11 +36,11 @@ We'll be integrating the following tools:
 
 Additionally we're also proposing that depending on the architecture where the solution is being implemented we should complement the log data whenever possible with system information from the servers so that we can assing the troubleshooting by drilling-down to the exact server's state when a given events is perceived through the log analysis.
 
-- [Beats](https://www.elastic.co/products/beats): Is a lightweight agent from Elastic, which is great for gathering data. They sit on your servers and centralize data in Elasticsearch. Idea is that we use it to increase the the processing muscle, Beats can also ship to Logstash for transformation and parsing. 
+- [Beats](https://www.elastic.co/products/beats): Is a lightweight agent from Elastic, which is great for gathering data. They sit on your servers and centralize data in Elasticsearch. Idea is that we use it to increase the the processing muscle, Beats can also ship to Logstash for transformation and parsing.
 
 - [CAdvisor:](https://github.com/google/cadvisor) (Container Advisor) provides container users an understanding of the resource usage and performance characteristics of their running containers. It is a running daemon that collects, aggregates, processes, and exports information about running containers. Specifically, for each container it keeps resource isolation parameters, historical resource usage, histograms of complete historical resource usage and network statistics. This data is exported by container and machine-wide.
 
-- [ Prometheus](https://github.com/prometheus): Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.
+- [Prometheus](https://github.com/prometheus): Prometheus, a Cloud Native Computing Foundation project, is a systems and service monitoring system. It collects metrics from configured targets at given intervals, evaluates rule expressions, displays the results, and can trigger alerts if some condition is observed to be true.
 
 - [Node_Exporter:](https://github.com/prometheus/node_exporter) Prometheus exporter for hardware and OS metrics exposed by \*NIX kernels, written in Go with pluggable metric collectors.
 
@@ -60,36 +60,21 @@ We're proposing the following advantages with the bundle of solutions that we've
 ## Architecture
 
 The following is a visual representation of how the different tools will be integrated:
-![LaaS Proposed Architecture](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/laas_architecture.png)
+![LaaS Proposed Architecture](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/laas_architecture.png)
 
 ## Deployment Steps
 
-To assist with a quick deploy, we'll provide docker-compose templates of how the tools should integrated at the following:
+For the full deployment steps please follow instructions provided at the following page:
 
-- [Docker-Compose Files](https://github.com/IBM-SMI-Brazil/LaaS/tree/master/docker_compose)
-
-### Dependencies
-
-* [Docker](https://docs.docker.com/engine/installation/)
-* [Docker Compose](https://docs.docker.com/compose/install/)
-
-### Installation Steps
-
-Run the following commands:
-
-```bash
-git clone git@github.com:IBM-SMI-Brazil/LaaS.git
-cd ./LaaS/docker_compose
-docker-compose up -d
-```
+- [LaaS Deployment Steps](deployment/DEPLOYMENT_STEPS.md)
 
 ## Presentation Deck
 
 We're currently using the following presentation as a quick reference to present the solution:
 
-![2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf)
+![2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/ppt-deck/2017-11-01_LaaS_(LogAnalytics_As_A_Service)_en-us_v6.0.pdf)
 
-![2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf](https://github.com/IBM-SMI-Brazil/LaaS/blob/master/ppt-deck/2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf)
+![2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf](https://github.ibm.com/poc-smi-eads/LaaS/blob/master/ppt-deck/2017-11-04_LaaS_(LogAnalytics_As_A_Service)_pt-br_v6.0.pdf)
 
 ## Contact
 
@@ -97,5 +82,5 @@ In case you need any further information or assistance, the following folks can 
 
 Team            |        Name   |    Email    | Role  
 ---------------------|------------------------------------|---------|------|
-<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
-<img src="https://github.com/IBM-SMI-Brazil/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
+<img src="https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/hprado.png" width="120"> | [Hugo Prado](https://www.linkedin.com/in/hugodoprado/) | hprado@br.ibm.com | IT Specialist
+<img src="https://github.ibm.com/poc-smi-eads/LaaS/blob/master/images/fsilveir.jpg" width="120">  | [Felipe Silveira](https://www.linkedin.com/in/fsilveira/) | fsilveir@br.ibm.com | IT Specialist
